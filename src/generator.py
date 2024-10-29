@@ -1,5 +1,10 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 import random
+from re import S
 import sys
+from token import COMMA
 from typing import Callable
 from collections import defaultdict
 from sys import stdin, stdout
@@ -42,19 +47,34 @@ def hi() -> None:
 @command("GetRandom")
 def get_random() -> None:
     """Function that prints a pseudo-random intiger to the stdout"""
-    rand_int = random.randint(-sys.maxsize, sys.maxsize)
+    rand_int = random.randint(0, 1000)
     stdout.write(f"{rand_int}\n")
     stdout.flush()
 
 
 @command("Shutdown")
 def shutdown() -> None:
-    """Function that shuts down the program"""
-    raise SystemExit("User requested shutdown")
+    """Function that raises a SystemExit exception to stop the generator process
+
+    Raises:
+        SystemExit: Exception that stops the generator process
+    """
+    raise SystemExit(0)
+
+
+def recieve_messages():
+    while True:
+        message = stdin.readline().strip()
+        yield COMMAND_REGISTRY[message]
 
 
 def main() -> None:
-    COMMAND_REGISTRY["GetRandom"]()
+    for response in recieve_messages():
+        try:
+            response()
+        except SystemExit:
+            break
 
 
-main()
+if __name__ == "__main__":
+    main()
