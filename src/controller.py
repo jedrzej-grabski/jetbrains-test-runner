@@ -191,6 +191,6 @@ if __name__ == "__main__":
 
         random_ints.sort()
 
-        print(f"Generated random intigers: {random_ints}")
+        print(f"Generated random integers: {random_ints}")
         print(f"Median: {median(random_ints)}")
         print(f"Average: {mean(random_ints)}")
