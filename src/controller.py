@@ -35,6 +35,7 @@ def parse_args() -> Namespace:
 
     parser = ArgumentParser()
     parser.add_argument(
+        "-g",
         "--generator-executable",
         help="Path to the generator executable, or the command required to run it.",
         type=str,
