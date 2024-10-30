@@ -18,11 +18,13 @@ def mock_correct_process():
             self.stdin = io.TextIOWrapper(io.BytesIO(), write_through=True)
             self.stdout = io.TextIOWrapper(io.BytesIO(), write_through=True)
 
-        def wait(self, timeout=None):
-            return True  # Simulate immediate process shutdown
+        # def wait(self):
+        #     """Simulatte proper process shutdown."""
+        #     return True
 
-        def kill(self):
-            pass  # Simulate process not responding to shutdown
+        # def kill(self):
+        #     """"""
+        #     pass
 
         def set_output(self, output: str) -> None:
             """Helper function to set stdout content."""
