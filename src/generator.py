@@ -3,7 +3,6 @@
 
 import random
 from re import S
-import sys
 from token import COMMA
 from typing import Callable
 from collections import defaultdict
