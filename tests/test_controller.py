@@ -3,13 +3,11 @@ import pytest
 from subprocess import TimeoutExpired
 import io
 from src.controller import (
-    Config,
     UnexpectedResponseError,
     greet,
     retrieve_random,
     send_message,
     read_message,
-    open_generator_process,
 )
 
 
