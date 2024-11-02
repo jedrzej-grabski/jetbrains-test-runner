@@ -1,0 +1,24 @@
+[project]
+name = "jetbrains-test-runner"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Jedrzej Grabski", email = "grabski.dev@gmail.com"},
+]
+dependencies = []
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+package_dir = {"" = "src"}
+
+[tool.pdm.scripts]
+test = "pytest tests/ -v"
+generator = "python src/generator.py"
+controller = "python src/controller.py"
+
+[dependency-groups]
+dev = ["pytest>=8.3.3"]

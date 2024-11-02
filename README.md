@@ -2,22 +2,18 @@
 
 ## To run:
 
-### Setup
-* using `pdm`
-    * run `pdm install` to install dependencies
-    * run `pdm venv activate` to enter a virtual environment
+### Using PDM
+* run `pdm install` to install dependencies
+* run `pdm run controller` – to run the controller program
+* run `pdm run generator` – to test the generator interactively
+
+### Using Python
+* create a virtual environment with `python -m venv .venv`
+* activate a virtual environment with `source .venv/bin/activate`
+* install dependencies with `pip install -r requirements.txt`
+* run `python src/controller.py` – to run the controller program
+* run `python src/generator.py` – to test the generator interactively
     
-* using bare python
-    * create a virtual environment with `python -m venv .venv`
-    * activate with `source .venv/bin/activate`
-    * install dependencies with `pip install -r requirements.txt`
-    
-
-### Running
-* To test-run the controller, run `python src/controller.py -g GENERATOR_EXECUTABLE`
-* `GENERATOR_EXECUTABLE` defaults to `src/generator.py` 
-* You can also directly interact with the generator via the standard input/output by running `python src/generator.py`
-
-
 ## Testing
-* To run test, run `python -m pytest -v` in the root directory.
+* With **PDM**, run `pdm run tests`
+* With **python**, run `pytest -v`
