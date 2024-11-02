@@ -3,7 +3,6 @@ from contextlib import contextmanager
 from statistics import mean, median
 from subprocess import Popen, PIPE, TimeoutExpired
 import io
-from threading import TIMEOUT_MAX
 from typing import Generator
 
 
@@ -72,7 +71,7 @@ def open_generator_process(executable: str) -> Generator[Popen, None, None]:
         shutdown(process)
 
         try:
-            process.wait(timeout=TIMEOUT_MAX)
+            process.wait(timeout=Config.TIMEOUT_MAX)
         except TimeoutExpired:
             process.kill()
             raise TimeoutError(
