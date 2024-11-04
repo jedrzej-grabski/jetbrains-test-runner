@@ -38,7 +38,7 @@ def parse_args() -> Namespace:
         "--generator-executable",
         help="Path to the generator executable, or the command required to run it.",
         type=str,
-        required=True,
+        default="src/generator.py",
     )
     return parser.parse_args()
 
