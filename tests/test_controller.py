@@ -1,4 +1,3 @@
-from multiprocessing import Value
 import pytest
 from subprocess import TimeoutExpired
 import io

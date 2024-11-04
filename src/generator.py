@@ -4,7 +4,7 @@
 import random
 from typing import Callable
 from collections import defaultdict
-from sys import stdin, stdout
+import sys
 
 # While it may seem uneccessary, I decided to use the function registry design pattern
 # to allow for scalability
@@ -37,16 +37,16 @@ def command(name: str) -> Callable:
 @command("Hi")
 def hi() -> None:
     """Function that prints Hi to the stdout"""
-    stdout.write("Hi\n")
-    stdout.flush()
+    sys.stdout.write("Hi\n")
+    sys.stdout.flush()
 
 
 @command("GetRandom")
 def get_random() -> None:
     """Function that prints a pseudo-random intiger to the stdout"""
     rand_int = random.randint(0, 1000)
-    stdout.write(f"{rand_int}\n")
-    stdout.flush()
+    sys.stdout.write(f"{rand_int}\n")
+    sys.stdout.flush()
 
 
 @command("Shutdown")
@@ -61,16 +61,13 @@ def shutdown() -> None:
 
 def recieve_messages():
     while True:
-        message = stdin.readline().strip()
+        message = sys.stdin.readline().strip()
         yield COMMAND_REGISTRY[message]
 
 
 def main() -> None:
     for response in recieve_messages():
-        try:
-            response()
-        except SystemExit:
-            break
+        response()
 
 
 if __name__ == "__main__":
