@@ -14,17 +14,11 @@ from src.controller import (
 @pytest.fixture
 def mock_correct_process():
     class CorrectProcess:
+        """Mock class for a properly working process."""
+
         def __init__(self):
             self.stdin = io.TextIOWrapper(io.BytesIO(), write_through=True)
             self.stdout = io.TextIOWrapper(io.BytesIO(), write_through=True)
-
-        # def wait(self):
-        #     """Simulatte proper process shutdown."""
-        #     return True
-
-        # def kill(self):
-        #     """"""
-        #     pass
 
         def set_output(self, output: str) -> None:
             """Helper function to set stdout content."""
@@ -37,6 +31,8 @@ def mock_correct_process():
 
 @pytest.fixture
 def mock_incorrect_process():
+    """Mock class for a process that does not have stdin and stdout and should not work."""
+
     class IncorrectProcess:
         def __init__(self) -> None:
             self.stdin = None
@@ -46,7 +42,6 @@ def mock_incorrect_process():
 
 
 class TestSendMessage:
-    """Tests for the send_message function."""
 
     def test_send_message_from_incorrect_process(self, mock_incorrect_process):
         with pytest.raises(ValueError):
@@ -57,7 +52,6 @@ class TestSendMessage:
 
 
 class TestReadMessage:
-    """Tests for the read_message function."""
 
     def test_read_message_from_correct_process(self, mock_correct_process):
         read_message(mock_correct_process)
@@ -68,7 +62,6 @@ class TestReadMessage:
 
 
 class TestGreet:
-    """Tests for the greet function."""
 
     def test_greet_expected(self, mock_correct_process):
         mock_correct_process.set_output("Hi")
@@ -81,7 +74,6 @@ class TestGreet:
 
 
 class TestRetrieveRandom:
-    """Tests for the retrieve_random function."""
 
     def test_retrieve_random_expected(self, mock_correct_process):
         mock_correct_process.set_output("33")
